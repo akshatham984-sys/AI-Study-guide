@@ -1,0 +1,1057 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>StudySmart - Exam Planner</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #172033;
+}
+
+/* NAVIGATION */
+nav {
+    background: #4f46e5;
+    color: white;
+    padding: 18px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav button {
+    background: transparent;
+    color: white;
+    border: none;
+    margin-left: 15px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+nav button:hover {
+    color: #dfe0ff;
+}
+
+/* PAGES */
+.page {
+    display: none;
+}
+
+.page.active {
+    display: block;
+}
+
+/* HOME */
+.hero {
+    min-height: 500px;
+    padding: 80px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #eef0ff, #ffffff);
+}
+
+.hero-text {
+    max-width: 620px;
+}
+
+.hero h1 {
+    font-size: 55px;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: #4f46e5;
+}
+
+.hero p {
+    font-size: 19px;
+    line-height: 1.7;
+    color: #667085;
+    margin-bottom: 30px;
+}
+
+.hero-icon {
+    width: 300px;
+    height: 300px;
+    border-radius: 35px;
+    background: #4f46e5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 120px;
+    box-shadow: 0 20px 50px rgba(79,70,229,.3);
+}
+
+.btn {
+    padding: 14px 22px;
+    border-radius: 9px;
+    border: none;
+    background: #4f46e5;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.btn:hover {
+    background: #3730a3;
+}
+
+.btn-white {
+    background: white;
+    color: #4f46e5;
+    border: 2px solid #4f46e5;
+}
+
+/* FEATURES */
+.features {
+    padding: 60px 8%;
+}
+
+.features h2 {
+    text-align: center;
+    font-size: 35px;
+    margin-bottom: 35px;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.feature {
+    background: white;
+    padding: 30px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.07);
+}
+
+.feature-icon {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.feature h3 {
+    margin-bottom: 10px;
+}
+
+.feature p {
+    color: #667085;
+    line-height: 1.5;
+}
+
+/* COMMON */
+.container {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.heading h1 {
+    color: #4f46e5;
+    font-size: 42px;
+    margin-bottom: 10px;
+}
+
+.heading p {
+    color: #667085;
+}
+
+/* FORMS */
+.box {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.07);
+    margin-bottom: 30px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin: 15px 0 8px;
+}
+
+input, select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #d8dce5;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.generate {
+    width: 100%;
+    margin-top: 20px;
+    padding: 15px;
+    border: none;
+    border-radius: 9px;
+    background: #4f46e5;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* PLAN */
+.plan {
+    display: grid;
+    gap: 15px;
+}
+
+.plan-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 5px solid #4f46e5;
+    box-shadow: 0 4px 15px rgba(0,0,0,.05);
+}
+
+.plan-card h3 {
+    color: #4f46e5;
+    margin-bottom: 8px;
+}
+
+.plan-card p {
+    margin-top: 6px;
+    color: #555;
+}
+
+/* QUESTIONS */
+.question {
+    background: white;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,.05);
+}
+
+.question-number {
+    color: #4f46e5;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* TUTOR */
+.chat {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,.07);
+}
+
+.chat-area {
+    height: 400px;
+    overflow-y: auto;
+    padding: 20px;
+    background: #fafbff;
+}
+
+.message {
+    padding: 13px 17px;
+    border-radius: 14px;
+    margin-bottom: 12px;
+    max-width: 75%;
+    line-height: 1.5;
+    white-space: pre-line;
+}
+
+.bot {
+    background: white;
+    border: 1px solid #ddd;
+}
+
+.user {
+    background: #4f46e5;
+    color: white;
+    margin-left: auto;
+}
+
+.chat-input {
+    display: flex;
+    gap: 10px;
+    padding: 15px;
+}
+
+.chat-input input {
+    flex: 1;
+}
+
+.chat-input button {
+    background: #4f46e5;
+    color: white;
+    border: none;
+    padding: 0 25px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* PROGRESS */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.stat {
+    background: white;
+    text-align: center;
+    padding: 25px;
+    border-radius: 15px;
+}
+
+.stat h2 {
+    font-size: 35px;
+    color: #4f46e5;
+}
+
+.progress-box {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-top: 25px;
+}
+
+.progress-row {
+    margin: 22px 0;
+}
+
+.progress-row span {
+    font-weight: bold;
+}
+
+.bar {
+    height: 12px;
+    background: #e5e7eb;
+    border-radius: 10px;
+    margin-top: 8px;
+}
+
+.fill {
+    height: 100%;
+    background: #4f46e5;
+    border-radius: 10px;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    background: #172033;
+    color: white;
+    padding: 25px;
+    margin-top: 50px;
+}
+
+/* MOBILE */
+@media(max-width:800px) {
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .feature-grid,
+    .stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    nav {
+        padding: 15px;
+    }
+
+    nav button {
+        font-size: 12px;
+        margin-left: 5px;
+    }
+}
+
+@media(max-width:500px) {
+
+    .feature-grid,
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-icon {
+        width: 220px;
+        height: 220px;
+        font-size: 80px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<nav>
+
+<div class="logo">🧠 StudySmart</div>
+
+<div>
+<button onclick="openPage('home')">Home</button>
+<button onclick="openPage('planner')">Planner</button>
+<button onclick="openPage('exam')">Exam</button>
+<button onclick="openPage('tutor')">AI Tutor</button>
+<button onclick="openPage('progress')">Progress</button>
+</div>
+
+</nav>
+
+
+<!-- HOME -->
+
+<section id="home" class="page active">
+
+<div class="hero">
+
+<div class="hero-text">
+
+<h1>
+Study Smarter.<br>
+<span>Prepare Better.</span>
+</h1>
+
+<p>
+StudySmart helps students create study schedules,
+prepare for examinations, practice questions and
+track their learning progress.
+</p>
+
+<button class="btn"
+onclick="openPage('planner')">
+Create Study Plan
+</button>
+
+<button class="btn btn-white"
+onclick="openPage('exam')">
+Prepare for Exam
+</button>
+
+</div>
+
+<div class="hero-icon">
+🧠
+</div>
+
+</div>
+
+
+<div class="features">
+
+<h2>Features</h2>
+
+<div class="feature-grid">
+
+<div class="feature">
+<div class="feature-icon">📅</div>
+<h3>Study Planner</h3>
+<p>Create a personalized study timetable.</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">📝</div>
+<h3>Exam Preparation</h3>
+<p>Generate practice questions.</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">🤖</div>
+<h3>AI Tutor</h3>
+<p>Ask questions and learn concepts.</p>
+</div>
+
+<div class="feature">
+<div class="feature-icon">📊</div>
+<h3>Progress</h3>
+<p>Monitor your study progress.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PLANNER -->
+
+<section id="planner" class="page">
+
+<div class="container">
+
+<div class="heading">
+
+<h1>📅 Study Planner</h1>
+
+<p>
+Create your personalized examination timetable.
+</p>
+
+</div>
+
+<div class="box">
+
+<label>Subjects</label>
+
+<input
+id="subjects"
+placeholder="AI, DBMS, Python, Networks"
+>
+
+<label>Exam Date</label>
+
+<input
+type="date"
+id="examDate"
+>
+
+<label>Study Hours Per Day</label>
+
+<input
+type="number"
+id="hours"
+value="3"
+min="1"
+max="12"
+>
+
+<button class="generate"
+onclick="makePlan()">
+
+Generate Study Plan
+
+</button>
+
+</div>
+
+<div id="plan"></div>
+
+</div>
+
+</section>
+
+
+<!-- EXAM -->
+
+<section id="exam" class="page">
+
+<div class="container">
+
+<div class="heading">
+
+<h1>📝 Exam Preparation</h1>
+
+<p>
+Generate practice questions for your exam.
+</p>
+
+</div>
+
+<div class="box">
+
+<label>Subject / Topic</label>
+
+<input
+id="topic"
+placeholder="Example: Artificial Intelligence"
+>
+
+<label>Difficulty</label>
+
+<select id="level">
+
+<option>Easy</option>
+<option selected>Medium</option>
+<option>Hard</option>
+
+</select>
+
+<button class="generate"
+onclick="makeQuestions()">
+
+Generate Questions
+
+</button>
+
+</div>
+
+<div id="questions"></div>
+
+</div>
+
+</section>
+
+
+<!-- AI TUTOR -->
+
+<section id="tutor" class="page">
+
+<div class="container">
+
+<div class="heading">
+
+<h1>🤖 AI Study Tutor</h1>
+
+<p>
+Ask a question about your subject.
+</p>
+
+</div>
+
+<div class="chat">
+
+<div id="chat" class="chat-area">
+
+<div class="message bot">
+
+<b>StudySmart AI</b><br>
+
+Hello! 👋<br>
+Ask me any study-related question.
+
+</div>
+
+</div>
+
+<div class="chat-input">
+
+<input
+id="userInput"
+placeholder="Example: What is a transformer?"
+onkeydown="if(event.key==='Enter') askAI()"
+>
+
+<button onclick="askAI()">
+Send
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PROGRESS -->
+
+<section id="progress" class="page">
+
+<div class="container">
+
+<div class="heading">
+
+<h1>📊 Progress Dashboard</h1>
+
+<p>
+Track your preparation.
+</p>
+
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<h2>5</h2>
+<p>Subjects</p>
+</div>
+
+<div class="stat">
+<h2>18</h2>
+<p>Topics Completed</p>
+</div>
+
+<div class="stat">
+<h2>32</h2>
+<p>Study Hours</p>
+</div>
+
+<div class="stat">
+<h2>72%</h2>
+<p>Overall Progress</p>
+</div>
+
+</div>
+
+
+<div class="progress-box">
+
+<h2>Subject Progress</h2>
+
+<div class="progress-row">
+<span>Artificial Intelligence</span>
+<div class="bar">
+<div class="fill" style="width:85%"></div>
+</div>
+</div>
+
+<div class="progress-row">
+<span>Database Management</span>
+<div class="bar">
+<div class="fill" style="width:70%"></div>
+</div>
+</div>
+
+<div class="progress-row">
+<span>Computer Networks</span>
+<div class="bar">
+<div class="fill" style="width:62%"></div>
+</div>
+</div>
+
+<div class="progress-row">
+<span>Python</span>
+<div class="bar">
+<div class="fill" style="width:78%"></div>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<footer>
+
+StudySmart © 2026 | AI-Based Study Planner & Exam Preparation
+
+</footer>
+
+
+<script>
+
+/* PAGE SWITCHING */
+
+function openPage(page) {
+
+    let pages =
+    document.querySelectorAll(".page");
+
+    pages.forEach(function(item) {
+        item.classList.remove("active");
+    });
+
+    document.getElementById(page)
+    .classList.add("active");
+
+    window.scrollTo(0,0);
+}
+
+
+/* STUDY PLANNER */
+
+function makePlan() {
+
+    let subjectText =
+    document.getElementById("subjects").value;
+
+    let examDate =
+    document.getElementById("examDate").value;
+
+    let hours =
+    document.getElementById("hours").value;
+
+
+    if(subjectText === "") {
+
+        alert("Please enter your subjects.");
+
+        return;
+    }
+
+
+    if(examDate === "") {
+
+        alert("Please select your exam date.");
+
+        return;
+    }
+
+
+    let subjects =
+    subjectText
+    .split(",")
+    .map(x => x.trim())
+    .filter(x => x !== "");
+
+
+    let today = new Date();
+
+    let exam = new Date(examDate);
+
+    let difference =
+    exam.getTime() - today.getTime();
+
+    let days =
+    Math.ceil(
+        difference /
+        (1000 * 60 * 60 * 24)
+    );
+
+
+    if(days < 1) {
+        days = 1;
+    }
+
+
+    /* Generate maximum 30 days */
+
+    let totalDays =
+    Math.min(days,30);
+
+
+    let tasks = [
+
+        "Learn important concepts",
+
+        "Read notes and make short notes",
+
+        "Practice questions",
+
+        "Revise important topics",
+
+        "Take a self-test",
+
+        "Solve previous-year questions"
+
+    ];
+
+
+    let result = `
+    <h2 style="margin-bottom:20px">
+    📚 Your Study Plan
+    </h2>
+    `;
+
+
+    for(let i=0; i<totalDays; i++) {
+
+        let subject =
+        subjects[i % subjects.length];
+
+        let task =
+        tasks[i % tasks.length];
+
+
+        result += `
+
+        <div class="plan-card">
+
+            <h3>
+            Day ${i + 1} — ${subject}
+            </h3>
+
+            <p>
+            📚 Task: ${task}
+            </p>
+
+            <p>
+            ⏰ Study Time: ${hours} hours
+            </p>
+
+        </div>
+
+        `;
+
+    }
+
+
+    document.getElementById("plan")
+    .innerHTML = result;
+
+}
+
+
+/* EXAM QUESTIONS */
+
+function makeQuestions() {
+
+    let topic =
+    document.getElementById("topic").value;
+
+    let level =
+    document.getElementById("level").value;
+
+
+    if(topic === "") {
+
+        alert("Please enter a topic.");
+
+        return;
+    }
+
+
+    let questions = [
+
+        "What is " + topic + "?",
+
+        "Explain the main concepts of " +
+        topic + ".",
+
+        "What are the important features of " +
+        topic + "?",
+
+        "What are the advantages and disadvantages of " +
+        topic + "?",
+
+        "Explain " + topic +
+        " with a suitable example.",
+
+        "What are the applications of " +
+        topic + "?",
+
+        "What are the limitations of " +
+        topic + "?",
+
+        "Explain the importance of " +
+        topic + " in real-world applications."
+
+    ];
+
+
+    let result = `
+
+    <h2 style="margin-bottom:20px">
+    ${level} Level Questions
+    </h2>
+
+    `;
+
+
+    questions.forEach(function(q,index) {
+
+        result += `
+
+        <div class="question">
+
+            <div class="question-number">
+            Question ${index + 1}
+            </div>
+
+            <p>${q}</p>
+
+        </div>
+
+        `;
+
+    });
+
+
+    document.getElementById("questions")
+    .innerHTML = result;
+
+}
+
+
+/* STUDY ASSISTANT */
+
+function askAI() {
+
+    let input =
+    document.getElementById("userInput");
+
+    let question =
+    input.value.trim();
+
+
+    if(question === "") {
+        return;
+    }
+
+
+    let chat =
+    document.getElementById("chat");
+
+
+    chat.innerHTML += `
+
+    <div class="message user">
+    ${question}
+    </div>
+
+    `;
+
+
+    input.value = "";
+
+
+    setTimeout(function() {
+
+        let answer =
+
+        "Here is a simple way to study this topic:\\n\\n" +
+
+        "1. Understand the definition.\\n" +
+
+        "2. Learn the important concepts.\\n" +
+
+        "3. Study a practical example.\\n" +
+
+        "4. Write short notes.\\n" +
+
+        "5. Practice questions.\\n" +
+
+        "6. Revise before the examination.";
+
+
+        chat.innerHTML += `
+
+        <div class="message bot">
+
+        <b>StudySmart AI</b><br>
+
+        ${answer}
+
+        </div>
+
+        `;
+
+
+        chat.scrollTop =
+        chat.scrollHeight;
+
+    },500);
+
+}
+
+</script>
+
+</body>
+</html>
+```
